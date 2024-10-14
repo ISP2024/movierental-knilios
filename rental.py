@@ -43,3 +43,12 @@ class Rental:
         else:
             log = logging.getLogger()
         return amount
+     
+   def rental_point(self, frequent_renter_points: float):
+      if self.get_movie().get_price_code() == Movie.NEW_RELEASE:
+         # New release earns 1 point per day rented
+         return frequent_renter_points + self.get_days_rented()
+      else:
+         # Other rentals get only 1 point
+         return frequent_renter_points + 1
+        

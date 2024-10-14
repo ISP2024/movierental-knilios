@@ -13,7 +13,7 @@ class Customer:
     def __init__(self, name: str):
         """Initialize a new customer."""
         self.name = name
-        self.rentals = []
+        self.rentals: list[Rental] = []
 
     def add_rental(self, rental: Rental):
         """Add a rental for this customer"""
@@ -43,6 +43,7 @@ class Customer:
         
         for rental in self.rentals:
             # compute the frequent renter points based on movie price code
+            frequent_renter_points = rental.rental_point(frequent_renter_points)
             if rental.get_movie().get_price_code() == Movie.NEW_RELEASE:
                 # New release earns 1 point per day rented
                 frequent_renter_points += rental.get_days_rented()
