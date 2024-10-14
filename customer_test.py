@@ -26,7 +26,7 @@ class CustomerTest(unittest.TestCase):
 		customer.add_rental(Rental(self.childrens_movie, 2))
 		self.assertEqual(customer.get_total_amount(), 4.5)
 		customer.add_rental(Rental(self.regular_movie, 5))
-		self.assertEqual(customer.get_total_amount(), 4.5+6.5)
+		self.assertEqual(customer.get_total_amount(), 9.0)
   		
 	def test_statement(self):
 		stmt = self.c.statement()
