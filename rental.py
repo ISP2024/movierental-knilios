@@ -20,12 +20,15 @@ class Rental:
       self.days_rented = days_rented
 
    def get_movie(self) -> Movie:
+   def get_movie(self) -> Movie:
       return self.movie
 
+   def get_days_rented(self) -> int:
    def get_days_rented(self) -> int:
       return self.days_rented
   
    def get_price(self) -> float:
+      return self.get_movie().get_price(self.get_days_rented())
       return self.get_movie().get_price(self.get_days_rented())
      
    def rental_point(self, frequent_renter_points: float):
