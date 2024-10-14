@@ -68,5 +68,5 @@ class Customer:
     def get_rental_points(self) -> float:
         total_rental_points: float = 0
         for rental in self.rentals:
-            total_rental_points += rental.rental_point(0)
+            total_rental_points += rental.rental_point()
         return total_rental_points
