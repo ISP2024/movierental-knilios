@@ -41,3 +41,12 @@ class CustomerTest(unittest.TestCase):
 		matches = re.match(pattern, stmt.replace('\n',''), flags=re.DOTALL)
 		self.assertIsNotNone(matches)
 		self.assertEqual("12.00", matches[1])
+  
+	def test_get_rental_points(self):
+		customer = Customer("Movie Monster")
+		customer.add_rental(Rental(self.new_movie, 3))
+		self.assertEqual(customer.get_rental_points(), 3)
+		customer.add_rental(Rental(self.childrens_movie, 2))
+		self.assertEqual(customer.get_rental_points(), 4)
+		customer.add_rental(Rental(self.regular_movie, 5))
+		self.assertEqual(customer.get_rental_points(), 5)
