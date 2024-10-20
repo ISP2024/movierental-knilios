@@ -14,18 +14,18 @@ class CustomerTest(unittest.TestCase):
 		movies = list of some movies
 		"""
 		self.c = Customer("Movie Mogul")
-		self.new_movie = Movie("Mulan", Movie.NEW_RELEASE)
-		self.regular_movie = Movie("CitizenFour", Movie.REGULAR)
-		self.childrens_movie = Movie("Frozen", Movie.CHILDRENS)
+		self.new_movie = Movie("Mulan")
+		self.regular_movie = Movie("CitizenFour")
+		self.childrens_movie = Movie("Frozen")
 	
 	def test_billing(self):
 		# no convenient way to test billing since its buried in the statement() method.
 		customer = Customer("Movie Monster")
-		customer.add_rental(Rental(self.new_movie, 1))
+		customer.add_rental(Rental(self.new_movie, 1, Rental.NEW_RELEASE))
 		self.assertEqual(customer.get_total_amount(), 3)
-		customer.add_rental(Rental(self.childrens_movie, 2))
+		customer.add_rental(Rental(self.childrens_movie, 2, Rental.CHILDRENS))
 		self.assertEqual(customer.get_total_amount(), 4.5)
-		customer.add_rental(Rental(self.regular_movie, 5))
+		customer.add_rental(Rental(self.regular_movie, 5, Rental.REGULAR))
 		self.assertEqual(customer.get_total_amount(), 9.0)
   		
 	def test_statement(self):
@@ -36,7 +36,7 @@ class CustomerTest(unittest.TestCase):
 		self.assertIsNotNone(matches)
 		self.assertEqual("0.00", matches[1])
 		# add a rental
-		self.c.add_rental(Rental(self.new_movie, 4)) # days
+		self.c.add_rental(Rental(self.new_movie, 4, Rental.NEW_RELEASE)) # days
 		stmt = self.c.statement()
 		matches = re.match(pattern, stmt.replace('\n',''), flags=re.DOTALL)
 		self.assertIsNotNone(matches)
@@ -44,9 +44,9 @@ class CustomerTest(unittest.TestCase):
   
 	def test_get_rental_points(self):
 		customer = Customer("Movie Monster")
-		customer.add_rental(Rental(self.new_movie, 3))
+		customer.add_rental(Rental(self.new_movie, 3, Rental.NEW_RELEASE))
 		self.assertEqual(customer.get_rental_points(), 3)
-		customer.add_rental(Rental(self.childrens_movie, 2))
+		customer.add_rental(Rental(self.childrens_movie, 2, Rental.CHILDRENS))
 		self.assertEqual(customer.get_rental_points(), 4)
-		customer.add_rental(Rental(self.regular_movie, 5))
+		customer.add_rental(Rental(self.regular_movie, 5, Rental.REGULAR))
 		self.assertEqual(customer.get_rental_points(), 5)
