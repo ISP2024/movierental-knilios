@@ -44,7 +44,7 @@ class Rental:
       return self.get_price_code().get_rental_points(self.get_days_rented())
    
    @classmethod
-   def price_code_for_movie(cls, movie: Movie):
+   def get_price_for_movie (cls, movie: Movie):
       if movie.year == datetime.now().year:
          return cls.NEW_RELEASE
       if movie.is_genre("Children"):
