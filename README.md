@@ -18,3 +18,6 @@ Before and after each refactoring you should **run the unit tests**.
 
 See [Resources](https://cpske.github.io/ISP/assignment/movierental/movierental-part1#resources) in the assignment description.
 
+## Rationale
+2.1 It has the Feature Envy smell. The field is used in the Rental class more then the Movie class.
+2.2 It violates the Single Responsibility Principle. The movie had more the one responsibility which is to contain the information about the movie and contain the price (Which can change depending on how long it has been released.)
