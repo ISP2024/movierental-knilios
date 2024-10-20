@@ -1,6 +1,6 @@
 import logging
 import enum
-from price_abstract import NEW_RELEASE, REGULAR, CHILDREN, PriceStrategy
+from pricing import NEW_RELEASE, REGULAR, CHILDREN, PriceStrategy
     
 
 class Movie:
@@ -26,9 +26,3 @@ class Movie:
     
     def __str__(self):
         return self.title
-    
-    def get_rental_points(self, days: int) -> int:
-        return self.get_price_code().get_rental_points(days)
-    
-    def get_price(self, days: int) -> float:
-        return self.get_price_code().get_price(days)
