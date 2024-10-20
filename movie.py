@@ -1,18 +1,20 @@
-import logging
-import enum    
+from dataclasses import dataclass
 
+@dataclass(frozen=True)
 class Movie:
     """
     A movie available for rent.
     """
-        
-    def __init__(self, title):
-        # Initialize a new movie. 
-        self.title = title
+    title: str
+    year: int
+    genre: list[str]
     
     def get_title(self):
         return self.title
     
+    def is_genre(self, genre):
+        return genre in self.genre
+    
     def __str__(self):
-        return self.title
+        return f"{self.title} ({str(self.year)})"
     
